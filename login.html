@@ -59,14 +59,14 @@
       const password = document.getElementById('password').value;
       if (username === 'admin' && password === 'password') {
         localStorage.setItem('adminLoggedIn', 'true');
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
       } else {
         alert('Nama pengguna atau kata sandi salah.');
       }
     });
     function continueAsGuest() {
       localStorage.setItem('adminLoggedIn', 'false');
-      window.location.href = 'index.html';
+      window.location.href = 'home.html';
     }
   </script>
 </body>
