@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Sistem Kas Siswa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; }
+    .container { max-width: 1024px; margin: 1rem auto; padding: 0 1rem; }
+    .app-header { text-align: center; margin-bottom: 2rem; position: relative; padding: 0 0.5rem; }
+    .app-title { font-size: 1.8rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem; position: relative; display: inline-block; }
+    .app-title:after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, #3b82f6, #6366f1); border-radius: 2px; }
+    .app-subtitle { font-size: 1rem; color: #64748b; max-width: 100%; margin: 0 auto; line-height: 1.4; }
+    .card { background: white; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); padding: 1rem; margin-bottom: 1.5rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s ease; border: none; white-space: nowrap; }
+    .btn-primary { background: linear-gradient(90deg, #3b82f6, #6366f1); color: white; box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+    .btn-outline { background: transparent; border: 1px solid #3b82f6; color: #3b82f6; padding: 0.4rem 0.8rem; }
+    .btn-outline:hover { background: #3b82f6; color: white; }
+    .form-group { margin-bottom: 0.75rem; }
+    .form-label { display: block; margin-bottom: 0.25rem; font-weight: 600; font-size: 0.85rem; color: #475569; }
+    .form-control { width: 100%; padding: 0.6rem; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem; transition: border-color 0.2s ease; }
+    .form-control:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f8fafc; }
+    .login-container { max-width: 400px; width: 100%; }
+    .card.login-card { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <section class="card login-card">
+      <header class="app-header">
+        <h1 class="app-title">Login</h1>
+        <p class="app-subtitle">Masuk ke Sistem Kas Siswa</p>
+      </header>
+      <form id="loginForm">
+        <div class="form-group mb-3">
+          <label for="username" class="form-label">Nama Pengguna / Email</label>
+          <input type="text" id="username" class="form-control" required placeholder="Masukkan nama pengguna atau email Anda">
+        </div>
+        <div class="form-group mb-4">
+          <label for="password" class="form-label">Kata Sandi</label>
+          <input type="password" id="password" class="form-control" required placeholder="Masukkan kata sandi Anda">
+        </div>
+        <button type="submit" class="btn btn-primary w-full">
+          <span class="material-icons" style="margin-right: 0.2rem;">login</span> Masuk
+        </button>
+        <button type="button" class="btn btn-outline w-full" style="margin-top: 0.75rem;" onclick="continueAsGuest()">Lanjut sebagai Tamu</button>
+      </form>
+    </section>
+  </div>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === 'admin' && password === 'password') {
+        localStorage.setItem('adminLoggedIn', 'true');
+        window.location.href = 'index.html';
+      } else {
+        alert('Nama pengguna atau kata sandi salah.');
+      }
+    });
+    function continueAsGuest() {
+      localStorage.setItem('adminLoggedIn', 'false');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
