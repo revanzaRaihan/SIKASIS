@@ -533,6 +533,30 @@
   <script>
     // App Data
     const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxGouFauBoAj6Oaes-Ivs4HqVanxe6zO6R27X15bFmVfDUIyPAaDypvPfjJd8gaPM9z/exec";
+    async function postStudentToSheets(student, monthKey) {
+    try {
+    await fetch(SHEETS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ID: student.id,
+        Nomor: student.number,
+        Nama: student.name,
+        Bulan: monthKey,
+        Minggu1: false,
+        Minggu2: false,
+        Minggu3: false,
+        Minggu4: false
+      })
+    });
+    console.log("✅ Data siswa berhasil dikirim ke Google Sheets");
+  } catch (error) {
+    console.error("❌ Gagal mengirim data ke Google Sheets:", error);
+  }
+}
     const PAYMENT_AMOUNT = 5000; // Rp 5,000 per week
     const STUDENTS_PER_PAGE = 8;
     
@@ -635,6 +659,8 @@
         week4: false
       };
       
+      postStudentToSheets(newStudent, monthKey);
+
       // Reset form and close modal
       studentForm.reset();
       addStudentModal.classList.remove('show');
