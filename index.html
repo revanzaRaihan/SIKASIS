@@ -533,7 +533,7 @@
   <script>
     // App Data
     const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-    const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxGouFauBoAj6Oaes-Ivs4HqVanxe6zO6R27X15bFmVfDUIyPAaDypvPfjJd8gaPM9z/exec";
+    const SHEETS_URL = "https://docs.google.com/spreadsheets/d/1Gci_lYqSGQAvnEVytOlak_kI8W12MB21x8UcF51vHi0/edit?pli=1&gid=0#gid=0";
     async function postStudentToSheets(student, monthKey) {
     try {
     await fetch(SHEETS_URL, {
@@ -561,7 +561,7 @@
     const STUDENTS_PER_PAGE = 8;
     
     // Load data from localStorage
-    let students = JSON.parse(localStorage.getItem('students')) || [];
+    let students = [];
     let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
     let payments = JSON.parse(localStorage.getItem('payments')) || {};
     
